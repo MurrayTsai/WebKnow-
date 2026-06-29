@@ -1,0 +1,1816 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: WebKnow—准实时网站知识库问答助手
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.17@f7a5c1d222d17ee419b17a80d6e4923838fe93788dc724a3af73fbc6990b3a32
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/jina_tool:0.0.13@5e9ac9442a1fc31cf7f246017b159eebbcbf02016f70bd412ce9142cf9a53178
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1782717529860-source-1782717576549-target
+      selected: false
+      source: '1782717529860'
+      sourceHandle: source
+      target: '1782717576549'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1782717576549-source-llm-target
+      selected: false
+      source: '1782717576549'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: if-else
+      id: llm-source-1782717721226-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '1782717721226'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1782717721226-true-1782717740127-target
+      selected: false
+      source: '1782717721226'
+      sourceHandle: 'true'
+      target: '1782717740127'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1782717740127-source-answer-target
+      selected: false
+      source: '1782717740127'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1782718411995-source-1782719336239-target
+      selected: false
+      source: '1782718411995'
+      sourceHandle: source
+      target: '1782719336239'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1782719789522-source-1782718026220-target
+      selected: false
+      source: '1782719789522'
+      sourceHandle: source
+      target: '1782718026220'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1782717721226-false-1782718411995-target
+      selected: false
+      source: '1782717721226'
+      sourceHandle: 'false'
+      target: '1782718411995'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1782724931118-source-1782719789522-target
+      selected: false
+      source: '1782724931118'
+      sourceHandle: source
+      target: '1782719789522'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1782719336239-source-1782726378264-target
+      selected: false
+      source: '1782719336239'
+      sourceHandle: source
+      target: '1782726378264'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1782726378264-source-1782719075057-target
+      selected: false
+      source: '1782726378264'
+      sourceHandle: source
+      target: '1782719075057'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1782719075057-true-1782724931118-target
+      source: '1782719075057'
+      sourceHandle: 'true'
+      target: '1782724931118'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1782719075057-false-1782719099933-target
+      source: '1782719075057'
+      sourceHandle: 'false'
+      target: '1782719099933'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables: []
+      height: 72
+      id: '1782717529860'
+      position:
+        x: 726.7453249582145
+        y: 107.75282995523426
+      positionAbsolute:
+        x: 726.7453249582145
+        y: 107.75282995523426
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1782717576549'
+          - result
+        desc: 判断知识库是否足够
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 00d4d991-cf18-4f10-8bdf-a86dc10ac033
+          role: system
+          text: '你是一个知识库检索结果判断器。
+
+
+            你的任务不是回答用户问题，而是判断知识库检索结果是否与用户问题相关，是否值得交给知识库回答节点继续处理。
+
+
+            用户问题：
+
+            {{#sys.query#}}
+
+
+            知识库检索结果：
+
+            {{#context#}}
+
+
+            判断标准：
+
+            1. 如果知识库检索结果和用户问题属于同一个主题，输出 YES。
+
+            2. 如果知识库检索结果虽然没有直接完整回答问题，但能提供相关背景、案例、操作信息或部分帮助，输出 YES。
+
+            3. 如果用户问的是某个概念的定义，而知识库中有该主题的大量相关内容，即使没有标准定义，也输出 YES。
+
+            4. 只有在知识库检索结果为空、完全无关、只有导航/标签/分类/归档/页脚内容时，才输出 NO。
+
+            5. 如果知识库内容和用户问题不是同一个主题，输出 NO。
+
+
+            重要输出规则：
+
+            1. 最终只能输出 YES 或 NO。
+
+            2. 不要输出解释。
+
+            3. 不要输出思考过程。
+
+            4. 不要输出 <think> 标签。
+
+            5. 不要输出其他任何文字。'
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 115
+      id: llm
+      position:
+        x: 726.7453249582145
+        y: 546.7642952585736
+      positionAbsolute:
+        x: 726.7453249582145
+        y: 546.7642952585736
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1782717740127.text#}}'
+        selected: false
+        title: 知识库存在直接回答
+        type: answer
+        variables: []
+      height: 102
+      id: answer
+      position:
+        x: 1675
+        y: 128.75282995523426
+      positionAbsolute:
+        x: 1675
+        y: 128.75282995523426
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        dataset_ids:
+        - U2IRPvDfEwEebuwWkaZyAiira+yEfx1ZYEHhBBhPjniy/0ObVaPp3PszvD63kMCz
+        - bshkRcXPk3y9e/4mc0xBCnQT0Iq8BnNrdFz8BjM7Gh+iSgnvm7YSHcxxQPk9PXJ9
+        - 6QEEx2tmmIwSP2Tx1zDqWDuzoDH9PtqpD6EfPYs6Hj3Dpq01VoDo2QROPDM0oHAL
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - sys
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 117
+      id: '1782717576549'
+      position:
+        x: 718.0398193252532
+        y: 318.519676700646
+      positionAbsolute:
+        x: 718.0398193252532
+        y: 318.519676700646
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 86030cd2-bce3-4527-b947-d55ed6971aee
+            value: 'YES'
+            varType: string
+            variable_selector:
+            - llm
+            - text
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 123
+      id: '1782717721226'
+      position:
+        x: 1063.2316665384992
+        y: 225.2864270382139
+      positionAbsolute:
+        x: 1063.2316665384992
+        y: 225.2864270382139
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1782717576549'
+          - result
+        desc: 知识检索结果回答用户问题
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: b90548fb-a1c4-4e07-b38a-c0aa8090f5fd
+          role: system
+          text: '你是 SiteMind 网站内容问答助手。
+
+
+            你的任务是根据知识库检索结果回答用户问题。知识库检索结果可能不是标准答案，而是文章片段、案例、操作说明、FAQ 或相关内容。你需要在不编造事实的前提下，尽量基于这些内容给出有帮助的回答。
+
+
+            用户问题：
+
+            {{#sys.query#}}
+
+
+            知识库检索结果：
+
+            {{{#context#}}
+
+
+            回答规则：
+
+            1. 只能根据“知识库检索结果”回答。
+
+            2. 不要使用知识库之外的信息。
+
+            3. 不要编造知识库中没有的具体事实、数据、结论或承诺。
+
+            4. 如果知识库没有直接给出标准定义，但提供了相关背景、案例、操作内容或问答片段，你可以基于这些内容进行归纳，并明确说明：“当前知识库没有给出严格定义，但根据已检索到的内容，可以理解为……”
+
+            5. 如果知识库内容只是部分相关，也要尽量回答能确定的部分，并说明哪些部分知识库没有明确提到。
+
+            6. 只有在知识库检索结果为空、完全无关、只有导航/标签/分类/归档/页脚内容时，才回答：“我在当前网站内容中没有找到明确答案。”
+
+            7. 回答要先给结论，再做简短解释。
+
+            8. 如果知识库内容涉及多个方面，请用分点说明。
+
+            9. 如果有来源链接，请在最后列出参考来源。
+
+
+            输出格式：
+
+            结论：
+
+            ……
+
+
+            说明：
+
+            ……
+
+
+            参考来源：
+
+            ……'
+        selected: false
+        title: LLM2
+        type: llm
+        vision:
+          enabled: false
+      height: 115
+      id: '1782717740127'
+      position:
+        x: 1369
+        y: 128.75282995523426
+      positionAbsolute:
+        x: 1369
+        y: 128.75282995523426
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1782719789522.text#}}'
+        desc: ' 有答案：实时网页回答'
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 130
+      id: '1782718026220'
+      position:
+        x: 2434.1067962285847
+        y: 647.3625380605716
+      positionAbsolute:
+        x: 2434.1067962285847
+        y: 647.3625380605716
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: 读取 sitemap
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Web link
+            ja_JP: Web link
+            pt_BR: URL da web
+            zh_Hans: 网页链接
+          label:
+            en_US: URL
+            ja_JP: URL
+            pt_BR: URL
+            zh_Hans: 网址
+          llm_description: url para scraping
+          max: null
+          min: null
+          name: url
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'request parameters, format: {"key1": "value1", "key2": "value2"}
+
+              '
+            ja_JP: 'request parameters, format: {"key1": "value1", "key2": "value2"}
+
+              '
+            pt_BR: 'parâmetros de solicitação, formato: {"key1": "value1", "key2":
+              "value2"}
+
+              '
+            zh_Hans: '请求参数，格式：{"key1": "value1", "key2": "value2"}
+
+              '
+          label:
+            en_US: Request params
+            ja_JP: Request params
+            pt_BR: Parâmetros de solicitação
+            zh_Hans: 请求参数
+          llm_description: request parameters
+          max: null
+          min: null
+          name: request_params
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: css selector for scraping specific elements
+            ja_JP: css selector for scraping specific elements
+            pt_BR: css selector para scraping de elementos específicos
+            zh_Hans: css 选择器用于抓取特定元素
+          label:
+            en_US: Target selector
+            ja_JP: Target selector
+            pt_BR: Seletor de destino
+            zh_Hans: 目标选择器
+          llm_description: css selector of the target element to scrape
+          max: null
+          min: null
+          name: target_selector
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: css selector for waiting for specific elements
+            ja_JP: css selector for waiting for specific elements
+            pt_BR: css selector para aguardar elementos específicos
+            zh_Hans: css 选择器用于等待特定元素
+          label:
+            en_US: Wait for selector
+            ja_JP: Wait for selector
+            pt_BR: Aguardar por seletor
+            zh_Hans: 等待选择器
+          llm_description: css selector of the target element to wait for
+          max: null
+          min: null
+          name: wait_for_selector
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Remove all images from the response.
+            ja_JP: Remove all images from the response.
+            pt_BR: Remove all images from the response.
+            zh_Hans: 从响应中删除所有图片。
+          label:
+            en_US: Remove images
+            ja_JP: Remove images
+            pt_BR: Remove images
+            zh_Hans: 删除图片
+          llm_description: Remove all images from the response
+          max: null
+          min: null
+          name: remove_images
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: 'Captions all images at the specified URL, adding ''Image [idx]:
+              [caption]'' as an alt tag for those without one. This allows downstream
+              LLMs to interact with the images in activities such as reasoning and
+              summarizing.'
+            ja_JP: 'Captions all images at the specified URL, adding ''Image [idx]:
+              [caption]'' as an alt tag for those without one. This allows downstream
+              LLMs to interact with the images in activities such as reasoning and
+              summarizing.'
+            pt_BR: 'Adiciona legendas a todas as imagens na URL especificada, adicionando
+              ''Imagem [idx]: [legenda]'' como uma tag alt para aquelas que não têm
+              uma. Isso permite que os modelos LLM inferiores interajam com as imagens
+              em atividades como raciocínio e resumo.'
+            zh_Hans: '为指定 URL 上的所有图像添加标题，为没有标题的图像添加“Image [idx]: [caption]”作为 alt
+              标签，以支持下游模型的图像交互。'
+          label:
+            en_US: Image caption
+            ja_JP: Image caption
+            pt_BR: Legenda da imagem
+            zh_Hans: 图片说明
+          llm_description: Captions all images at the specified URL
+          max: null
+          min: null
+          name: image_caption
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: A "Buttons & Links" section will be created at the end. This helps
+              the downstream LLMs or web agents navigating the page or take further
+              actions.
+            ja_JP: A "Buttons & Links" section will be created at the end. This helps
+              the downstream LLMs or web agents navigating the page or take further
+              actions.
+            pt_BR: Um "Botões & Links" section will be created at the end. This helps
+              the downstream LLMs or web agents navigating the page or take further
+              actions.
+            zh_Hans: 末尾将添加“按钮和链接”部分，方便下游模型或网络代理做页面导航或执行进一步操作。
+          label:
+            en_US: Gather all links at the end
+            ja_JP: Gather all links at the end
+            pt_BR: Coletar todos os links ao final
+            zh_Hans: 将所有链接集中到最后
+          llm_description: Gather all links at the end
+          max: null
+          min: null
+          name: gather_all_links_at_the_end
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: An "Images" section will be created at the end. This gives the
+              downstream LLMs an overview of all visuals on the page, which may improve
+              reasoning.
+            ja_JP: An "Images" section will be created at the end. This gives the
+              downstream LLMs an overview of all visuals on the page, which may improve
+              reasoning.
+            pt_BR: Um "Imagens" section will be created at the end. This gives the
+              downstream LLMs an overview of all visuals on the page, which may improve
+              reasoning.
+            zh_Hans: 末尾会新增“图片”部分，方便下游模型全面了解页面的视觉内容，提升推理效果。
+          label:
+            en_US: Gather all images at the end
+            ja_JP: Gather all images at the end
+            pt_BR: Coletar todas as imagens ao final
+            zh_Hans: 将所有图片集中到最后
+          llm_description: Gather all images at the end
+          max: null
+          min: null
+          name: gather_all_images_at_the_end
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Use proxy to access URLs
+            ja_JP: Use proxy to access URLs
+            pt_BR: Use proxy to access URLs
+            zh_Hans: 利用代理访问 URL
+          label:
+            en_US: Proxy server
+            ja_JP: Proxy server
+            pt_BR: Servidor de proxy
+            zh_Hans: 代理服务器
+          llm_description: Use proxy to access URLs
+          max: null
+          min: null
+          name: proxy_server
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: Bypass the Cache
+            ja_JP: Bypass the Cache
+            pt_BR: Ignorar o cache
+            zh_Hans: 是否绕过缓存
+          label:
+            en_US: Bypass the Cache
+            ja_JP: Bypass the Cache
+            pt_BR: Ignorar o cache
+            zh_Hans: 绕过缓存
+          llm_description: bypass the cache
+          max: null
+          min: null
+          name: no_cache
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: When enabled, request results won't be cached on jina servers.
+            ja_JP: When enabled, request results won't be cached on jina servers.
+            pt_BR: When enabled, request results won't be cached on jina servers.
+            zh_Hans: 启用后，请求结果将不会被缓存在 jina 服务器上。
+          label:
+            en_US: Do Not Cache/Track
+            ja_JP: Do Not Cache/Track
+            pt_BR: Do Not Cache/Track
+            zh_Hans: 请勿缓存/追踪
+          llm_description: Do Not Cache/Track
+          max: null
+          min: null
+          name: no_cache_track
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: Enable summary for the output
+            ja_JP: Enable summary for the output
+            pt_BR: Habilitar resumo para a saída
+            zh_Hans: 为输出启用摘要
+          label:
+            en_US: Enable summary
+            ja_JP: Enable summary
+            pt_BR: Habilitar resumo
+            zh_Hans: 是否启用摘要
+          llm_description: enable summary
+          max: null
+          min: null
+          name: summary
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: 3
+          form: form
+          human_description:
+            en_US: Number of times to retry the request if it fails
+            ja_JP: Number of times to retry the request if it fails
+            pt_BR: Número de vezes para repetir a solicitação se falhar
+            zh_Hans: 请求失败时重试的次数
+          label:
+            en_US: Retry
+            ja_JP: Retry
+            pt_BR: Repetir
+            zh_Hans: 重试
+          llm_description: Number of times to retry the request if it fails
+          max: null
+          min: null
+          name: max_retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: default
+          form: form
+          human_description:
+            en_US: Control the level of detail in the response to prevent over-filtering.
+              The default pipeline is optimized for most websites and LLM input.
+            ja_JP: Control the level of detail in the response to prevent over-filtering.
+              The default pipeline is optimized for most websites and LLM input.
+            pt_BR: Controle o nível de detalhamento na resposta para evitar filtragem
+              excessiva. O pipeline padrão é otimizado para a maioria dos sites e
+              entradas do LLM.
+            zh_Hans: 控制响应中的细节级别，以防止过度过滤。默认管道针对大多数网站和大模型输入进行了优化。
+          label:
+            en_US: Content Format
+            ja_JP: Content Format
+            pt_BR: Formato do conteúdo
+            zh_Hans: 内容格式
+          llm_description: Control the level of detail in the response to prevent
+            over-filtering
+          max: null
+          min: null
+          name: content_format
+          options:
+          - icon: ''
+            label:
+              en_US: Default
+              ja_JP: Default
+              pt_BR: Padrão
+              zh_Hans: 默认
+            value: default
+          - icon: ''
+            label:
+              en_US: Markdown
+              ja_JP: Markdown
+              pt_BR: Markdown
+              zh_Hans: Markdown
+            value: markdown
+          - icon: ''
+            label:
+              en_US: HTML
+              ja_JP: HTML
+              pt_BR: HTML
+              zh_Hans: HTML
+            value: html
+          - icon: ''
+            label:
+              en_US: Text
+              ja_JP: Text
+              pt_BR: Text
+              zh_Hans: Text
+            value: text
+          - icon: ''
+            label:
+              en_US: Screenshot
+              ja_JP: Screenshot
+              pt_BR: Captura de tela
+              zh_Hans: 截屏
+            value: screenshot
+          - icon: ''
+            label:
+              en_US: Pageshot
+              ja_JP: Pageshot
+              pt_BR: Snapshot da página
+              zh_Hans: 页面快照
+            value: pageshot
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          content_format: ''
+          gather_all_images_at_the_end: ''
+          gather_all_links_at_the_end: ''
+          image_caption: ''
+          max_retries: ''
+          no_cache: ''
+          no_cache_track: ''
+          proxy_server: ''
+          remove_images: ''
+          request_params: ''
+          summary: ''
+          target_selector: ''
+          url: ''
+          wait_for_selector: ''
+        plugin_id: langgenius/jina_tool
+        plugin_unique_identifier: langgenius/jina_tool:0.0.13@5e9ac9442a1fc31cf7f246017b159eebbcbf02016f70bd412ce9142cf9a53178
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=8090ed61-18a6-4be5-85d9-1f0441ae85e1&filename=3d1fd640f9dff9313d01fbe5f20b8777c93cea29a38e98f98656bac0e37e1dfa.svg
+        provider_id: langgenius/jina_tool/jina
+        provider_name: langgenius/jina_tool/jina
+        provider_show_name: Jina AI
+        provider_type: builtin
+        selected: false
+        title: 获取单页面
+        tool_configurations:
+          content_format:
+            type: constant
+            value: default
+          gather_all_images_at_the_end:
+            type: constant
+            value: false
+          gather_all_links_at_the_end:
+            type: constant
+            value: false
+          image_caption:
+            type: constant
+            value: false
+          max_retries:
+            type: constant
+            value: 3
+          no_cache:
+            type: constant
+            value: false
+          no_cache_track:
+            type: constant
+            value: false
+          proxy_server:
+            type: mixed
+            value: null
+          remove_images:
+            type: constant
+            value: null
+          summary:
+            type: constant
+            value: false
+          target_selector:
+            type: mixed
+            value: null
+          wait_for_selector:
+            type: mixed
+            value: null
+        tool_description: 获取目标网址（可以是 PDF），并将其转换为适合大模型处理的 Markdown 格式。
+        tool_label: 获取单页面
+        tool_name: jina_reader
+        tool_node_version: '2'
+        tool_parameters:
+          request_params:
+            type: mixed
+            value: ''
+          url:
+            type: mixed
+            value: https://murraytsai.github.io/sitemap.xml
+        type: tool
+      height: 401
+      id: '1782718411995'
+      position:
+        x: 1369
+        y: 364.80482450245427
+      positionAbsolute:
+        x: 1369
+        y: 364.80482450245427
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 1d53d4cf-3a33-440f-9f82-03957c2cb057
+            value: https://murraytsai.github.io
+            varType: string
+            variable_selector:
+            - '1782726378264'
+            - result
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 147
+      id: '1782719075057'
+      position:
+        x: 1738.4756637290334
+        y: 660.8457309258038
+      positionAbsolute:
+        x: 1738.4756637290334
+        y: 660.8457309258038
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: 该网站暂未收录该信息
+        desc: 无答案：未找到明确答案
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 127
+      id: '1782719099933'
+      position:
+        x: 2132.175085478499
+        y: 767.5489438973406
+      positionAbsolute:
+        x: 2132.175085478499
+        y: 767.5489438973406
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 从 sitemap 选择文章 URL
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 1744b4e0-5937-4352-aaed-4c4a77da5818
+          role: system
+          text: '你是一个严格的网站文章 URL 选择器。
+
+            你的任务是根据用户问题，从 sitemap 内容中选择最适合回答该问题的一篇文章详情页 URL。
+
+            用户问题：
+
+            {{{#sys.query#}}
+
+            sitemap 内容：
+
+            {{{#1782718411995.text#}}
+
+            选择规则：
+
+            只能选择 murraytsai.github.io 域名下的 URL。
+
+            必须优先选择具体文章详情页 URL。
+
+            不要选择首页、标签页、分类页、归档页、分页页、关于页、友情链接页。
+
+            如果 URL 中包含 /tags/、/categories/、/archives/、/page/、/about/、/links/，不要选择。
+
+            如果用户问题是某个概念、教程、操作方法，请优先选择标题或 URL 中最相关的文章。
+
+            如果多个文章 URL 都可能相关，选择最直接、最具体、最可能回答用户问题的那一个。
+
+            如果没有合适的文章详情页 URL，只输出 NO_URL。
+
+            输出规则：
+
+            最终只能输出一个完整 URL 或 NO_URL。
+
+            不要输出解释。
+
+            不要输出分析过程。
+
+            不要输出 标签。
+
+            不要输出 Markdown。
+
+            不要输出引号。
+
+            不要输出“我选择的是”之类的文字。
+
+            不要输出多个 URL。
+
+            不要换行。
+
+            不要输出任何多余文字。
+
+            正确输出示例：
+
+            https://murraytsai.github.io/2026/06/17/example/
+
+            错误输出示例：
+
+            ...https://murraytsai.github.io/example/
+
+            我认为最相关的是：https://murraytsai.github.io/example/
+
+            [https://murraytsai.github.io/example/]
+
+            请严格只输出 URL 或 NO_URL。'
+        selected: false
+        title: LLM 4
+        type: llm
+        vision:
+          enabled: false
+      height: 115
+      id: '1782719336239'
+      position:
+        x: 1738.4756637290334
+        y: 364.80482450245427
+      positionAbsolute:
+        x: 1738.4756637290334
+        y: 364.80482450245427
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 65536e3c-4b73-4f71-a5ca-e2a872904569
+          role: system
+          text: '你是 SiteMind 网站内容问答助手。
+
+            当前知识库没有找到足够答案，系统已经通过 sitemap 找到相关页面，并实时读取了文章正文。
+
+            用户问题：
+
+            {{{#sys.query#}}
+
+            实时读取的文章正文：
+
+            {{{#1782724931118.text#}}
+
+            参考网页链接：
+
+            {{{#1782726378264.result#}}
+
+            请根据实时读取的文章正文回答用户问题。
+
+            回答要求：
+
+            只能根据“实时读取的文章正文”回答。
+
+            不要使用文章正文之外的信息。
+
+            不要编造网站中没有的内容。
+
+            如果文章正文中没有明确答案，请回答：“我在当前网站内容中没有找到明确答案。”
+
+            如果读取到的是错误信息，例如 Invalid URL、ParamValidationError、404、空内容，不能强行回答，必须说明没有找到明确答案。
+
+            回答时先给结论，再给简短解释。
+
+            如果内容较多，请用分点方式说明。
+
+            回答最后必须列出参考网页链接。
+
+            不要输出思考过程。
+
+            不要输出 标签。
+
+            输出格式：
+
+            结论：
+
+            ……
+
+            说明：
+
+            ……
+
+            参考来源：
+
+            {{{#1782726378264.result#}}'
+        selected: false
+        title: LLM 5
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1782719789522'
+      position:
+        x: 2434.1067962285847
+        y: 395.871200390772
+      positionAbsolute:
+        x: 2434.1067962285847
+        y: 395.871200390772
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: 读取文章正文
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Web link
+            ja_JP: Web link
+            pt_BR: URL da web
+            zh_Hans: 网页链接
+          label:
+            en_US: URL
+            ja_JP: URL
+            pt_BR: URL
+            zh_Hans: 网址
+          llm_description: url para scraping
+          max: null
+          min: null
+          name: url
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'request parameters, format: {"key1": "value1", "key2": "value2"}
+
+              '
+            ja_JP: 'request parameters, format: {"key1": "value1", "key2": "value2"}
+
+              '
+            pt_BR: 'parâmetros de solicitação, formato: {"key1": "value1", "key2":
+              "value2"}
+
+              '
+            zh_Hans: '请求参数，格式：{"key1": "value1", "key2": "value2"}
+
+              '
+          label:
+            en_US: Request params
+            ja_JP: Request params
+            pt_BR: Parâmetros de solicitação
+            zh_Hans: 请求参数
+          llm_description: request parameters
+          max: null
+          min: null
+          name: request_params
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: css selector for scraping specific elements
+            ja_JP: css selector for scraping specific elements
+            pt_BR: css selector para scraping de elementos específicos
+            zh_Hans: css 选择器用于抓取特定元素
+          label:
+            en_US: Target selector
+            ja_JP: Target selector
+            pt_BR: Seletor de destino
+            zh_Hans: 目标选择器
+          llm_description: css selector of the target element to scrape
+          max: null
+          min: null
+          name: target_selector
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: css selector for waiting for specific elements
+            ja_JP: css selector for waiting for specific elements
+            pt_BR: css selector para aguardar elementos específicos
+            zh_Hans: css 选择器用于等待特定元素
+          label:
+            en_US: Wait for selector
+            ja_JP: Wait for selector
+            pt_BR: Aguardar por seletor
+            zh_Hans: 等待选择器
+          llm_description: css selector of the target element to wait for
+          max: null
+          min: null
+          name: wait_for_selector
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Remove all images from the response.
+            ja_JP: Remove all images from the response.
+            pt_BR: Remove all images from the response.
+            zh_Hans: 从响应中删除所有图片。
+          label:
+            en_US: Remove images
+            ja_JP: Remove images
+            pt_BR: Remove images
+            zh_Hans: 删除图片
+          llm_description: Remove all images from the response
+          max: null
+          min: null
+          name: remove_images
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: 'Captions all images at the specified URL, adding ''Image [idx]:
+              [caption]'' as an alt tag for those without one. This allows downstream
+              LLMs to interact with the images in activities such as reasoning and
+              summarizing.'
+            ja_JP: 'Captions all images at the specified URL, adding ''Image [idx]:
+              [caption]'' as an alt tag for those without one. This allows downstream
+              LLMs to interact with the images in activities such as reasoning and
+              summarizing.'
+            pt_BR: 'Adiciona legendas a todas as imagens na URL especificada, adicionando
+              ''Imagem [idx]: [legenda]'' como uma tag alt para aquelas que não têm
+              uma. Isso permite que os modelos LLM inferiores interajam com as imagens
+              em atividades como raciocínio e resumo.'
+            zh_Hans: '为指定 URL 上的所有图像添加标题，为没有标题的图像添加“Image [idx]: [caption]”作为 alt
+              标签，以支持下游模型的图像交互。'
+          label:
+            en_US: Image caption
+            ja_JP: Image caption
+            pt_BR: Legenda da imagem
+            zh_Hans: 图片说明
+          llm_description: Captions all images at the specified URL
+          max: null
+          min: null
+          name: image_caption
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: A "Buttons & Links" section will be created at the end. This helps
+              the downstream LLMs or web agents navigating the page or take further
+              actions.
+            ja_JP: A "Buttons & Links" section will be created at the end. This helps
+              the downstream LLMs or web agents navigating the page or take further
+              actions.
+            pt_BR: Um "Botões & Links" section will be created at the end. This helps
+              the downstream LLMs or web agents navigating the page or take further
+              actions.
+            zh_Hans: 末尾将添加“按钮和链接”部分，方便下游模型或网络代理做页面导航或执行进一步操作。
+          label:
+            en_US: Gather all links at the end
+            ja_JP: Gather all links at the end
+            pt_BR: Coletar todos os links ao final
+            zh_Hans: 将所有链接集中到最后
+          llm_description: Gather all links at the end
+          max: null
+          min: null
+          name: gather_all_links_at_the_end
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: An "Images" section will be created at the end. This gives the
+              downstream LLMs an overview of all visuals on the page, which may improve
+              reasoning.
+            ja_JP: An "Images" section will be created at the end. This gives the
+              downstream LLMs an overview of all visuals on the page, which may improve
+              reasoning.
+            pt_BR: Um "Imagens" section will be created at the end. This gives the
+              downstream LLMs an overview of all visuals on the page, which may improve
+              reasoning.
+            zh_Hans: 末尾会新增“图片”部分，方便下游模型全面了解页面的视觉内容，提升推理效果。
+          label:
+            en_US: Gather all images at the end
+            ja_JP: Gather all images at the end
+            pt_BR: Coletar todas as imagens ao final
+            zh_Hans: 将所有图片集中到最后
+          llm_description: Gather all images at the end
+          max: null
+          min: null
+          name: gather_all_images_at_the_end
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: Use proxy to access URLs
+            ja_JP: Use proxy to access URLs
+            pt_BR: Use proxy to access URLs
+            zh_Hans: 利用代理访问 URL
+          label:
+            en_US: Proxy server
+            ja_JP: Proxy server
+            pt_BR: Servidor de proxy
+            zh_Hans: 代理服务器
+          llm_description: Use proxy to access URLs
+          max: null
+          min: null
+          name: proxy_server
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: Bypass the Cache
+            ja_JP: Bypass the Cache
+            pt_BR: Ignorar o cache
+            zh_Hans: 是否绕过缓存
+          label:
+            en_US: Bypass the Cache
+            ja_JP: Bypass the Cache
+            pt_BR: Ignorar o cache
+            zh_Hans: 绕过缓存
+          llm_description: bypass the cache
+          max: null
+          min: null
+          name: no_cache
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: When enabled, request results won't be cached on jina servers.
+            ja_JP: When enabled, request results won't be cached on jina servers.
+            pt_BR: When enabled, request results won't be cached on jina servers.
+            zh_Hans: 启用后，请求结果将不会被缓存在 jina 服务器上。
+          label:
+            en_US: Do Not Cache/Track
+            ja_JP: Do Not Cache/Track
+            pt_BR: Do Not Cache/Track
+            zh_Hans: 请勿缓存/追踪
+          llm_description: Do Not Cache/Track
+          max: null
+          min: null
+          name: no_cache_track
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: false
+          form: form
+          human_description:
+            en_US: Enable summary for the output
+            ja_JP: Enable summary for the output
+            pt_BR: Habilitar resumo para a saída
+            zh_Hans: 为输出启用摘要
+          label:
+            en_US: Enable summary
+            ja_JP: Enable summary
+            pt_BR: Habilitar resumo
+            zh_Hans: 是否启用摘要
+          llm_description: enable summary
+          max: null
+          min: null
+          name: summary
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        - auto_generate: null
+          default: 3
+          form: form
+          human_description:
+            en_US: Number of times to retry the request if it fails
+            ja_JP: Number of times to retry the request if it fails
+            pt_BR: Número de vezes para repetir a solicitação se falhar
+            zh_Hans: 请求失败时重试的次数
+          label:
+            en_US: Retry
+            ja_JP: Retry
+            pt_BR: Repetir
+            zh_Hans: 重试
+          llm_description: Number of times to retry the request if it fails
+          max: null
+          min: null
+          name: max_retries
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: default
+          form: form
+          human_description:
+            en_US: Control the level of detail in the response to prevent over-filtering.
+              The default pipeline is optimized for most websites and LLM input.
+            ja_JP: Control the level of detail in the response to prevent over-filtering.
+              The default pipeline is optimized for most websites and LLM input.
+            pt_BR: Controle o nível de detalhamento na resposta para evitar filtragem
+              excessiva. O pipeline padrão é otimizado para a maioria dos sites e
+              entradas do LLM.
+            zh_Hans: 控制响应中的细节级别，以防止过度过滤。默认管道针对大多数网站和大模型输入进行了优化。
+          label:
+            en_US: Content Format
+            ja_JP: Content Format
+            pt_BR: Formato do conteúdo
+            zh_Hans: 内容格式
+          llm_description: Control the level of detail in the response to prevent
+            over-filtering
+          max: null
+          min: null
+          name: content_format
+          options:
+          - icon: ''
+            label:
+              en_US: Default
+              ja_JP: Default
+              pt_BR: Padrão
+              zh_Hans: 默认
+            value: default
+          - icon: ''
+            label:
+              en_US: Markdown
+              ja_JP: Markdown
+              pt_BR: Markdown
+              zh_Hans: Markdown
+            value: markdown
+          - icon: ''
+            label:
+              en_US: HTML
+              ja_JP: HTML
+              pt_BR: HTML
+              zh_Hans: HTML
+            value: html
+          - icon: ''
+            label:
+              en_US: Text
+              ja_JP: Text
+              pt_BR: Text
+              zh_Hans: Text
+            value: text
+          - icon: ''
+            label:
+              en_US: Screenshot
+              ja_JP: Screenshot
+              pt_BR: Captura de tela
+              zh_Hans: 截屏
+            value: screenshot
+          - icon: ''
+            label:
+              en_US: Pageshot
+              ja_JP: Pageshot
+              pt_BR: Snapshot da página
+              zh_Hans: 页面快照
+            value: pageshot
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          content_format: ''
+          gather_all_images_at_the_end: ''
+          gather_all_links_at_the_end: ''
+          image_caption: ''
+          max_retries: ''
+          no_cache: ''
+          no_cache_track: ''
+          proxy_server: ''
+          remove_images: ''
+          request_params: ''
+          summary: ''
+          target_selector: ''
+          url: ''
+          wait_for_selector: ''
+        plugin_id: langgenius/jina_tool
+        plugin_unique_identifier: langgenius/jina_tool:0.0.13@5e9ac9442a1fc31cf7f246017b159eebbcbf02016f70bd412ce9142cf9a53178
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=8090ed61-18a6-4be5-85d9-1f0441ae85e1&filename=3d1fd640f9dff9313d01fbe5f20b8777c93cea29a38e98f98656bac0e37e1dfa.svg
+        provider_id: langgenius/jina_tool/jina
+        provider_name: langgenius/jina_tool/jina
+        provider_show_name: Jina AI
+        provider_type: builtin
+        selected: false
+        title: 获取单页面2
+        tool_configurations:
+          content_format:
+            type: constant
+            value: default
+          gather_all_images_at_the_end:
+            type: constant
+            value: false
+          gather_all_links_at_the_end:
+            type: constant
+            value: false
+          image_caption:
+            type: constant
+            value: false
+          max_retries:
+            type: constant
+            value: 3
+          no_cache:
+            type: constant
+            value: false
+          no_cache_track:
+            type: constant
+            value: false
+          proxy_server:
+            type: mixed
+            value: null
+          remove_images:
+            type: constant
+            value: null
+          summary:
+            type: constant
+            value: false
+          target_selector:
+            type: mixed
+            value: null
+          wait_for_selector:
+            type: mixed
+            value: null
+        tool_description: 获取目标网址（可以是 PDF），并将其转换为适合大模型处理的 Markdown 格式。
+        tool_label: 获取单页面
+        tool_name: jina_reader
+        tool_node_version: '2'
+        tool_parameters:
+          request_params:
+            type: mixed
+            value: null
+          url:
+            type: mixed
+            value: '{{#1782726378264.result#}}'
+        type: tool
+      height: 401
+      id: '1782724931118'
+      position:
+        x: 2132.175085478499
+        y: 225.2864270382139
+      positionAbsolute:
+        x: 2132.175085478499
+        y: 225.2864270382139
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import re\nfrom urllib.parse import urlsplit, urlunsplit, quote, unquote\n\
+          \nDOMAIN = \"https://murraytsai.github.io\"\n\nBLOCKED_PATHS = [\n    \"\
+          /tags/\",\n    \"/categories/\",\n    \"/archives/\",\n    \"/page/\",\n\
+          \    \"/about\",\n    \"/links\",\n]\n\n\ndef clean_url(candidate):\n  \
+          \  if not candidate:\n        return None\n\n    candidate = candidate.strip()\n\
+          \n    # 找到域名开始的位置，去掉前面的解释文字\n    index = candidate.find(DOMAIN)\n    if\
+          \ index == -1:\n        return None\n\n    candidate = candidate[index:]\n\
+          \n    # 去掉包裹符号和句尾符号\n    candidate = candidate.strip()\n    candidate =\
+          \ candidate.strip(\"`\\\"'<>\")\n    candidate = candidate.rstrip(\"。.,，)）]】\"\
+          )\n\n    if not candidate.startswith(DOMAIN):\n        return None\n\n \
+          \   lower_url = candidate.lower()\n\n    # 排除标签页、分类页、归档页等非文章页\n    for blocked\
+          \ in BLOCKED_PATHS:\n        if blocked in lower_url:\n            return\
+          \ None\n\n    try:\n        parts = urlsplit(candidate)\n\n        # 修复中文、空格等特殊字符，保证是合法\
+          \ URL\n        path = quote(unquote(parts.path), safe=\"/%:@\")\n      \
+          \  query = quote(unquote(parts.query), safe=\"=&%/?+:\")\n\n        cleaned\
+          \ = urlunsplit(\n            (\n                parts.scheme,\n        \
+          \        parts.netloc,\n                path,\n                query,\n\
+          \                \"\",\n            )\n        )\n\n        return cleaned\n\
+          \n    except Exception:\n        return None\n\n\ndef main(arg1):\n    if\
+          \ not arg1:\n        return {\"result\": \"NO_URL\"}\n\n    raw_text = str(arg1)\n\
+          \n    # 先删除 <think>...</think> 内容\n    text = re.sub(\n        r\"<think>.*?</think>\"\
+          ,\n        \"\",\n        raw_text,\n        flags=re.DOTALL | re.IGNORECASE,\n\
+          \    ).strip()\n\n    # 如果删除后为空，就用原始文本兜底\n    if not text:\n        text\
+          \ = raw_text\n\n    # 如果模型明确输出 NO_URL，且没有 URL，就返回 NO_URL\n    if \"NO_URL\"\
+          \ in text and DOMAIN not in text:\n        return {\"result\": \"NO_URL\"\
+          }\n\n    # 提取 murraytsai.github.io 下的 URL\n    candidates = re.findall(\n\
+          \        r\"https?://murraytsai\\.github\\.io/[^\\s<>'\\\"\\]\\)）】]+\",\n\
+          \        text,\n    )\n\n    # 兜底：逐行检查\n    for line in text.splitlines():\n\
+          \        if DOMAIN in line:\n            candidates.append(line.strip())\n\
+          \n    # 从后往前取，因为 LLM 通常最后给出最终答案\n    for candidate in reversed(candidates):\n\
+          \        url = clean_url(candidate)\n        if url:\n            return\
+          \ {\"result\": url}\n\n    return {\"result\": \"NO_URL\"}"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1782719336239'
+          - text
+          value_type: string
+          variable: arg1
+      height: 51
+      id: '1782726378264'
+      position:
+        x: 1738.4756637290334
+        y: 539.7998907522045
+      positionAbsolute:
+        x: 1738.4756637290334
+        y: 539.7998907522045
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -308.6040969363247
+      y: 103.72317538809523
+      zoom: 0.7578582832551991
+  rag_pipeline_variables: []
