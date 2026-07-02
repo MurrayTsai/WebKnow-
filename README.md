@@ -1,6 +1,5 @@
 # WebKnow：准实时网站知识库问答助手
-
-> 一个面向 AI 产品经理求职作品集的 Dify Chatflow 项目。  
+ 
 > 核心能力：**知识库 RAG 优先回答 + sitemap 准实时补充 + Jina Reader 网页读取 + 无答案拒答**。
 
 ---
